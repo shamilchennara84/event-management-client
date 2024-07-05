@@ -8,7 +8,14 @@ import Swal from 'sweetalert2';
   styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent {
+  // showMainContent = false;
+
   constructor(private authService: AuthService) {}
+
+
+  // toggleSidebar() {
+  //   this.showMainContent = !this.showMainContent;
+  // }
   logout() {
     Swal.fire({
       title: 'Are you sure?',
@@ -25,5 +32,3 @@ export class SidebarComponent {
     });
   }
 }
-
-

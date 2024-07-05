@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { authGuard } from '../../guards/auth.guard';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { EventListComponent } from './components/event-list/event-list.component';
+import { UserEventListComponent } from './components/user-event-list/user-event-list.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'view', pathMatch: 'full' },
@@ -23,7 +24,7 @@ const routes: Routes = [
       },
       {
         path: 'my-events',
-        component: EventListComponent,
+        component: UserEventListComponent,
         canActivate: [authGuard],
       },
     ],

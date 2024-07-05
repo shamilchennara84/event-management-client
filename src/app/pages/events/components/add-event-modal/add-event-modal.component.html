@@ -1,0 +1,37 @@
+<!-- add-event-modal.component.html -->
+<div class="modal fade" id="addEventModal" tabindex="-1" aria-labelledby="addEventModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="addEventModalLabel">Add New Event</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="addEventForm" (ngSubmit)="onSubmit()">
+          <div class="mb-3">
+            <label for="eventTitle" class="form-label">Event Title</label>
+            <input type="text" class="form-control" id="eventTitle" formControlName="title" required>
+          </div>
+          <div class="mb-3">
+            <label for="eventDate" class="form-label">Event Date</label>
+            <input type="date" class="form-control" id="eventDate" formControlName="date" required>
+          </div>
+          <div class="mb-3">
+            <label for="eventDescription" class="form-label">Event Description</label>
+            <textarea class="form-control" id="eventDescription" rows="3" formControlName="description"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="eventLocation" class="form-label">Event Location</label>
+            <input type="text" class="form-control" id="eventLocation" formControlName="location" required>
+          </div>
+          <div class="mb-3">
+            <label for="eventTime" class="form-label">Event Time</label>
+            <input type="time" class="form-control" id="eventTime" formControlName="time" required>
+          </div>
+    
+          <button type="submit" class="btn btn-primary" [disabled]="addEventForm.invalid">Add Event</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

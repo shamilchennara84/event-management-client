@@ -1,0 +1,43 @@
+<!-- event-card.component.html -->
+<div class="card box-5 shadow-sm h-100">
+  <div class="card-body position-relative">
+    <div class="d-flex justify-content-between">
+      <div class="cal-y text-center p-2 bg-primary text-white rounded" style="width: 100px; height: 130px;">
+        <span class="day d-block display-4">
+          {{ eventDate | date:'dd' }}
+        </span>
+        <span class="month text-uppercase d-block">
+          {{ eventDate | date:'MMMM' }}
+        </span>
+        <span class="year text-uppercase d-block">
+          {{ eventDate | date:'yyyy' }}
+        </span>
+      </div>
+      <i title="Share event box" class="bi bi-arrow-up-right-circle-fill grow text-primary"></i>
+    </div>
+    <h2 class="card-title my-4 text-primary">
+      {{ eventTitle }}
+    </h2>
+    <p class="card-description">
+      {{ eventDescription }}
+    </p>
+    <div class="attached mt-3">
+      <span class="badge bg-secondary text-uppercase me-1">
+        {{ eventLocation }}
+      </span>
+    </div>
+  </div>
+  <div class="card-footer d-flex justify-content-between align-items-center">
+    <span class="badge bg-primary text-white rounded-pill">
+  <svg fill="#ffffff" width="15px" height="15px" viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
+    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+    <g id="SVGRepo_iconCarrier">
+      <path d="M14.6,21.3c-.3.226-.619.464-.89.7H16a1,1,0,0,1,0,2H12a1,1,0,0,1-1-1c0-1.5,1.275-2.456,2.4-3.3.75-.562,1.6-1.2,1.6-1.7a1,1,0,0,0-2,0,1,1,0,0,1-2,0,3,3,0,0,1,6,0C17,19.5,15.725,20.456,14.6,21.3ZM23,15a1,1,0,0,0-1,1v3H21a1,1,0,0,1-1-1V16a1,1,0,0,0-2,0v2a3,3,0,0,0,3,3h1v2a1,1,0,0,0,2,0V16A1,1,0,0,0,23,15ZM13,12V7a1,1,0,0,0-2,0v4H8a1,1,0,0,0,0,2h4A1,1,0,0,0,13,12ZM23,2a1,1,0,0,0-1,1V5.374A12,12,0,1,0,7.636,23.182,1.015,1.015,0,0,0,8,23.25a1,1,0,0,0,.364-1.932A10,10,0,1,1,20.636,7H18a1,1,0,0,0,0,2h3a3,3,0,0,0,3-3V3A1,1,0,0,0,23,2Z"></path>
+    </g>
+  </svg>
+      {{ eventTime }}
+    </span>
+    <i class="fas fa-map-marker-alt grow"></i>
+  </div>
+</div>
