@@ -1,0 +1,11 @@
+<!-- event-list.component.html -->
+<section>
+  <div class="container-lg py-5">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4 cross-card mb-5">
+      <div class="col" *ngFor="let event of events" >
+      <app-event-list-item [eventDate]="event.date" [eventTitle]="event.title" [eventDescription]="event.description" [eventLocation]="event.location" [eventTime]="event.time" [eventMapLink]="event.mapLink">
+      </app-event-list-item>
+      </div>
+    </div>
+  </div>
+</section>
