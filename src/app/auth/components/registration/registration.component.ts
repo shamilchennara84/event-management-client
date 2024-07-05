@@ -45,7 +45,7 @@ export class RegistrationComponent implements OnInit, OnDestroy {
     if (this.registerForm.valid) {
       const registerObserver = {
         next: (value: AuthResponse) => {
-          this.router.navigate(['/articles']);
+          this.router.navigate(['/events']);
         },
       };
 

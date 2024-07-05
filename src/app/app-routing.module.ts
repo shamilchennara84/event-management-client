@@ -8,6 +8,11 @@ const routes: Routes = [
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
   { path: '', redirectTo: 'auth', pathMatch: 'full' },
+  {
+    path: 'events',
+    loadChildren: () =>
+      import('./pages/events/events.module').then((m) => m.EventsModule),
+  },
   { path: '**', component: PageNotFoundComponent },
 ];
 

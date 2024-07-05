@@ -7,9 +7,10 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { AuthService } from './services/auth.service';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
+import { DashboardComponent } from './pages/events/components/dashboard/dashboard.component';
 
 @NgModule({
-  declarations: [AppComponent, PageNotFoundComponent],
+  declarations: [AppComponent, PageNotFoundComponent, DashboardComponent],
   imports: [BrowserModule, AppRoutingModule, NgbModule, HttpClientModule],
   providers: [AuthService],
   bootstrap: [AppComponent],
