@@ -1,0 +1,30 @@
+  <div class="container d-flex min-vh-100 flex-column justify-content-center py-4">
+    <div class="mx-auto w-100" style="max-width: 400px;">
+      <h2 class="mt-4 text-center text-primary font-weight-bold">EventHub</h2>
+      <h2 class="mt-4 text-center font-weight-bold">Sign in to your account</h2>
+    </div>
+
+    <div class="mt-4 mx-auto w-100" style="max-width: 400px;">
+      <!-- Integrated Form -->
+      <form [formGroup]="loginForm" (submit)="login()" action="#" method="POST">
+        <div class="mb-3">
+          <label for="email" class="form-label">E-mail</label>
+          <input type="email" class="form-control" formControlName="email" autocomplete="email" required>
+          <app-email-validation [emailControl]="loginForm.get('email')" [isSubmitted]="isSubmitted"></app-email-validation>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" formControlName="password" autocomplete="current-password" required>
+          <app-password-validation [passwordControl]="loginForm.get('password')" [isSubmitted]="isSubmitted"></app-password-validation>
+        </div>
+        <div>
+          <button type="submit" class="btn btn-primary btn-block">Sign in</button>
+        </div>
+      </form>
+
+      <p class="mt-4 text-center text-muted">
+        Not a member?
+        <a [routerLink]="['/auth/signup']" class="font-weight-bold text-primary">Register</a>
+      </p>
+    </div>
+  </div>

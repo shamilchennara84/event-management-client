@@ -1,10 +1,10 @@
 <div *ngIf="isSubmitted && usernameControl &&  usernameControl.errors">
-  <div *ngIf="usernameControl.errors['required']" class="text-red-600 text-sm">Username is required</div>
-  <div *ngIf="usernameControl.errors['minlength']" class="text-red-600 text-sm">Username must contain
+  <div *ngIf="usernameControl.errors['required']" class="text-danger small">Username is required</div>
+  <div *ngIf="usernameControl.errors['minlength']" class="text-danger small">Username must contain
     {{ usernameControl.errors['minlength'].requiredLength }} characters
   </div>
-  <div *ngIf="usernameControl.errors['maxlength']" class="text-red-600 text-sm">Username max contain
+  <div *ngIf="usernameControl.errors['maxlength']" class="text-danger small">Username max contain
     {{ usernameControl.errors['maxlength'].requiredLength }} characters
   </div>
-  <div *ngIf="usernameControl.errors['pattern'] &&!usernameControl.errors['minlength'] &&!usernameControl.errors['maxlength']" class="text-red-600 text-sm">Username only contains alphabets</div>
+  <div *ngIf="usernameControl.errors['pattern'] &&!usernameControl.errors['minlength'] &&!usernameControl.errors['maxlength']" class="text-danger small">Username only contains alphabets</div>
 </div>

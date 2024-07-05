@@ -1,1 +1,40 @@
-<p>registration works!</p>
+  <div class="container d-flex min-vh-100 flex-column justify-content-center py-4">
+    <div class="mx-auto w-100" style="max-width: 400px;">
+      <h2 class="mt-4 text-center text-primary font-weight-bold">ContentHub</h2>
+      <h2 class="mt-4 text-center font-weight-bold">Create your account</h2>
+    </div>
+
+    <div class="mt-4 mx-auto w-100" style="max-width: 400px;">
+      <!-- Integrated Registration Form -->
+      <form [formGroup]="registerForm" (submit)="register()" action="#" method="POST">
+        <div class="mb-3">
+          <label for="username" class="form-label">Username</label>
+          <input type="text" class="form-control" formControlName="name" autocomplete="username" required>
+          <app-username-validation [usernameControl]="registerForm.get('name')" [isSubmitted]="isSubmitted"></app-username-validation>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">E-mail</label>
+          <input type="email" class="form-control" formControlName="email" autocomplete="email" required>
+          <app-email-validation [emailControl]="registerForm.get('email')" [isSubmitted]="isSubmitted"></app-email-validation>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" class="form-control" formControlName="password" autocomplete="new-password" required>
+          <app-password-validation [passwordControl]="registerForm.get('password')" [isSubmitted]="isSubmitted"></app-password-validation>
+        </div>
+        <div class="mb-3">
+          <label for="confirmPassword" class="form-label">Confirm Password</label>
+          <input type="password" class="form-control" formControlName="confirmPassword" autocomplete="new-password" required>
+          <app-repeat-password-validation [repeatPassControl]="registerForm.get('confirmPassword')" [isSubmitted]="isSubmitted"></app-repeat-password-validation>
+        </div>
+        <div>
+          <button type="submit" class="btn btn-primary btn-block">Register</button>
+        </div>
+      </form>
+
+      <p class="mt-4 text-center text-muted">
+        Already a member?
+        <a [routerLink]="['/auth/login']" class="font-weight-bold text-primary">Sign in</a>
+      </p>
+    </div>
+  </div>
