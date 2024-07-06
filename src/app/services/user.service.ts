@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root',
@@ -21,5 +21,13 @@ export class UserService {
 
   addUserEvent(event: any): Observable<any> {
     return this.http.post(`${this.apiUrl}/`, event);
+  }
+
+  editEvent(eventId: string, updatedEvent: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${eventId}`, updatedEvent);
+  }
+
+  deleteEvent(eventId: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${eventId}`);
   }
 }

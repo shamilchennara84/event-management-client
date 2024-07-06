@@ -9,11 +9,9 @@ import { UserEventListComponent } from './components/user-event-list/user-event-
 import { EventListItemComponent } from './components/event-list-item/event-list-item.component';
 import { AddEventModalComponent } from './components/add-event-modal/add-event-modal.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { EditEventModalComponent } from './components/edit-event-modal/edit-event-modal.component';
+
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
-
-
+import { UserEventListItemComponent } from './components/user-event-list-item/user-event-list-item.component';
 
 @NgModule({
   declarations: [
@@ -23,10 +21,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     UserEventListComponent,
     EventListItemComponent,
     AddEventModalComponent,
-    EditEventModalComponent,
-
-
+    UserEventListItemComponent,
   ],
-  imports: [CommonModule, EventsRoutingModule, ReactiveFormsModule,NgbModule],
+  imports: [CommonModule, EventsRoutingModule, ReactiveFormsModule, NgbModule],
 })
 export class EventsModule {}

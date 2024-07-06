@@ -1,0 +1,86 @@
+<!-- event-card.component.html -->
+<div class="card box-5 shadow-sm h-100">
+  <div class="card-body position-relative">
+    <div class="d-flex justify-content-between">
+      <div class="cal-y text-center p-2 bg-primary text-white rounded" style="width: 100px; height: 130px;">
+        <span class="day d-block display-4">
+          {{ eventDate | date:'dd' }}
+        </span>
+        <span class="month text-uppercase d-block">
+          {{ eventDate | date:'MMMM' }}
+        </span>
+        <span class="year text-uppercase d-block">
+          {{ eventDate | date:'yyyy' }}
+        </span>
+      </div>
+      <i title="Share event box" class="bi bi-arrow-up-right-circle-fill grow text-primary"></i>
+    </div>
+    <h2 class="card-title my-4 text-primary">
+      {{ eventTitle }}
+    </h2>
+    <p class="card-description">
+      {{ eventDescription }}
+    </p>
+    <div class="attached mt-3">
+      <span class="badge bg-secondary text-uppercase me-1">
+        {{ eventLocation }}
+      </span>
+    </div>
+  </div>
+  <div class="card-footer d-flex justify-content-between align-items-center">
+    <span class="badge bg-primary text-white rounded-pill p-2">
+      <svg fill="#ffffff" width="15px" height="15px" viewBox="0 0 24 24" id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
+        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+        <g id="SVGRepo_iconCarrier">
+          <path d="M14.6,21.3c-.3.226-.619.464-.89.7H16a1,1,0,0,1,0,2H12a1,1,0,0,1-1-1c0-1.5,1.275-2.456,2.4-3.3.75-.562,1.6-1.2,1.6-1.7a1,1,0,0,0-2,0,1,1,0,0,1-2,0,3,3,0,0,1,6,0C17,19.5,15.725,20.456,14.6,21.3ZM23,15a1,1,0,0,0-1,1v3H21a1,1,0,0,1-1-1V16a1,1,0,0,0-2,0v2a3,3,0,0,0,3,3h1v2a1,1,0,0,0,2,0V16A1,1,0,0,0,23,15ZM13,12V7a1,1,0,0,0-2,0v4H8a1,1,0,0,0,0,2h4A1,1,0,0,0,13,12ZM23,2a1,1,0,0,0-1,1V5.374A12,12,0,1,0,7.636,23.182,1.015,1.015,0,0,0,8,23.25a1,1,0,0,0,.364-1.932A10,10,0,1,1,20.636,7H18a1,1,0,0,0,0,2h3a3,3,0,0,0,3-3V3A1,1,0,0,0,23,2Z"></path>
+        </g>
+      </svg>
+      {{ eventTime }}
+    </span>
+ <button type="button" class="btn btn-outline-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#editEventModal">
+   Edit
+ </button>
+ <button type="button" class="btn btn-outline-danger rounded-pill" (click)="onDelete()">
+   Delete
+ </button>
+    <i class="fas fa-map-marker-alt grow"></i>
+  </div>
+</div>
+
+<div class="modal fade" id="editEventModal" tabindex="-1" aria-labelledby="editEventModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editEventModalLabel">Edit Event</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form [formGroup]="editEventForm" (ngSubmit)="onEditSubmit()">
+          <div class="mb-3">
+            <label for="editEventTitle" class="form-label">Event Title</label>
+            <input type="text" class="form-control" id="editEventTitle" formControlName="title" required>
+          </div>
+          <div class="mb-3">
+            <label for="editEventDate" class="form-label">Event Date</label>
+            <input type="date" class="form-control" id="editEventDate" formControlName="date" required>
+          </div>
+          <div class="mb-3">
+            <label for="editEventDescription" class="form-label">Event Description</label>
+            <textarea class="form-control" id="editEventDescription" rows="3" formControlName="description"></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="editEventLocation" class="form-label">Event Location</label>
+            <input type="text" class="form-control" id="editEventLocation" formControlName="location" required>
+          </div>
+          <div class="mb-3">
+            <label for="editEventTime" class="form-label">Event Time</label>
+            <input type="time" class="form-control" id="editEventTime" formControlName="time" required>
+          </div>
+
+          <button type="submit" class="btn btn-primary" [disabled]="editEventForm.invalid">Save Changes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

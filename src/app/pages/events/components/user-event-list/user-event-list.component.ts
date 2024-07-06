@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Event } from '../../../../models/event.model';
 import { UserService } from '../../../../services/user.service';
 import { Subscription } from 'rxjs';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { EditEventModalComponent } from '../edit-event-modal/edit-event-modal.component';
+import Swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-user-event-list',
@@ -15,10 +15,7 @@ export class UserEventListComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
   selectedEvent!: Event;
 
-  constructor(
-    private userService: UserService,
-    private modalService: NgbModal
-  ) {}
+  constructor(private userService: UserService) {}
 
   ngOnInit() {
     this.loadUserEvents();
@@ -45,33 +42,51 @@ export class UserEventListComponent implements OnInit, OnDestroy {
     this.subscriptions.push(subscription);
   }
 
-  openEditModal(event: Event) {
+  handleEventSubmit(event: Event) {
     console.log(event);
-    this.selectedEvent = event;
-    const modalRef = this.modalService.open(EditEventModalComponent);
-    modalRef.componentInstance.event = this.selectedEvent;
-    modalRef.result
-      .then((result) => {
-        if (result === 'updated') {
-        }
-      })
-      .catch((error) => {
-        console.error('Modal dismissed with error:', error);
+    const subscription = this.userService
+      .editEvent(event._id, event)
+      .subscribe({
+        next: (updatedEvent: Event) => {
+          const index = this.events.findIndex((e) => e._id === event._id);
+          if (index !== -1) {
+            this.events[index] = updatedEvent;
+          }
+        },
       });
+    this.subscriptions.push(subscription);
   }
 
-  updateEvent(updatedEvent: Event) {
-    const index = this.events.findIndex(
-      (event) => event._id === updatedEvent._id
-    );
-    if (index !== -1) {
-      this.events[index] = updatedEvent;
-    }
+  handleDelete(eventId: string): void {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Proceed with the deletion process
+        this.userService.deleteEvent(eventId).subscribe({
+          next: () => {
+            Swal.fire('Deleted!', 'Your event has been deleted.', 'success');
+            // Optionally, refresh the list of events after deletion
+            this.loadUserEvents();
+          },
+          error: (err) => {
+            Swal.fire(
+              'Failed to delete',
+              'There was an error deleting the event.',
+              'error'
+            );
+          },
+        });
+      }
+    });
   }
 
-  deleteEvent(event: Event) {
-    this.events = this.events.filter((e) => e._id !== event._id);
-  }
   ngOnDestroy() {
     this.subscriptions.forEach((sub) => sub.unsubscribe());
   }
