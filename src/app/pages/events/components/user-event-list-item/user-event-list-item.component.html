@@ -1,4 +1,3 @@
-<!-- event-card.component.html -->
 <div class="card box-5 shadow-sm h-100">
   <div class="card-body position-relative">
     <div class="d-flex justify-content-between">
@@ -38,22 +37,25 @@
       </svg>
       {{ eventTime }}
     </span>
- <button type="button" class="btn btn-outline-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#editEventModal">
-   Edit
- </button>
- <button type="button" class="btn btn-outline-danger rounded-pill" (click)="onDelete()">
-   Delete
- </button>
+    <div class="ms-auto">
+      <button type="button" class="btn btn-outline-primary rounded-pill me-2" data-bs-toggle="modal" data-bs-target="#editEventModal">
+        Edit
+      </button>
+      <button type="button" class="btn btn-outline-danger rounded-pill" (click)="onDelete()">
+        Delete
+      </button>
+    </div>
     <i class="fas fa-map-marker-alt grow"></i>
   </div>
 </div>
 
+<!-- Edit Event Modal -->
 <div class="modal fade" id="editEventModal" tabindex="-1" aria-labelledby="editEventModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header bg-primary text-white">
         <h5 class="modal-title" id="editEventModalLabel">Edit Event</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form [formGroup]="editEventForm" (ngSubmit)="onEditSubmit()">
@@ -78,7 +80,7 @@
             <input type="time" class="form-control" id="editEventTime" formControlName="time" required>
           </div>
 
-          <button type="submit" class="btn btn-primary" [disabled]="editEventForm.invalid">Save Changes</button>
+          <button type="submit" class="btn btn-primary">Save Changes</button>
         </form>
       </div>
     </div>

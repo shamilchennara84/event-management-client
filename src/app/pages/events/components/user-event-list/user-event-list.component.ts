@@ -43,18 +43,30 @@ export class UserEventListComponent implements OnInit, OnDestroy {
   }
 
   handleEventSubmit(event: Event) {
-    console.log(event);
-    const subscription = this.userService
-      .editEvent(event._id, event)
-      .subscribe({
-        next: (updatedEvent: Event) => {
-          const index = this.events.findIndex((e) => e._id === event._id);
-          if (index !== -1) {
-            this.events[index] = updatedEvent;
-          }
-        },
-      });
-    this.subscriptions.push(subscription);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, update it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        console.log(event);
+        const subscription = this.userService
+          .editEvent(event._id, event)
+          .subscribe({
+            next: (updatedEvent: Event) => {
+              const index = this.events.findIndex((e) => e._id === event._id);
+              if (index !== -1) {
+                this.events[index] = updatedEvent;
+              }
+            },
+          });
+        this.subscriptions.push(subscription);
+      }
+    });
   }
 
   handleDelete(eventId: string): void {

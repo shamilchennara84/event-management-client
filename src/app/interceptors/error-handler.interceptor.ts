@@ -23,15 +23,19 @@ export class ErrorHandlerInterceptor implements HttpInterceptor {
     return next.handle(req).pipe(
       catchError((err: HttpErrorResponse) => {
         console.warn('Error during API call:', err);
+
         if (err.status === 401) {
           Swal.fire(
             'Session expired',
             'Your session has expired. Please login again.',
             'warning'
           );
-          this.authService.logout(); 
+          this.authService.logout();
+        } else if (err.status === 409) {
+          Swal.fire('RSVP Conflict', err.error.message, 'info');
+        } else {
+          Swal.fire(err.statusText, err.error.message, 'error');
         }
-        Swal.fire(err.statusText, err.error.message, 'error');
         return throwError(() => err);
       })
     );
